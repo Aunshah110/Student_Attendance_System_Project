@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh; background: #f4f7fc;">
+    <div class="register-container">
+        <h2 class="text-center mb-4">Create an Account</h2>
+        <form action="{{ url_for('register') }}" method="POST">
+            <div class="mb-3">
+                <label for="id" class="form-label">Student/Teacher ID:</label>
+                <input type="text" class="form-control" id="id" name="id" required>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Select Role</label>
+                <select class="form-select" id="role" name="role" required>
+                    <option value="Admin">Admin</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Student">Student</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+        </form><br>
+    </div>    
+</div>
+{% endblock %}

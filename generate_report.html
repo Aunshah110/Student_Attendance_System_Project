@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Attendance Reports</h2>
+
+    <!-- Attendance Table -->
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Total Days</th>
+                <th>Attended Days</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in student_attendance_data %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.total_days }}</td>
+                <td>{{ student.attended_days }}</td>
+                <td>{{ student.percentage }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   
+</div><br>
+
+ <!-- Chart Section -->
+ <div class="mt-5">
+    <h2 class="text-center mb-4">Attendance Percentage Chart</2>
+</div>
+
+<!-- Chart.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<canvas id="attendanceChart"></canvas>
+
+<script>
+    // Fetch data from Flask (Properly formatted)
+    var studentIDs = JSON.parse('{{ student_attendance_data | map(attribute="id") | list | tojson | safe }}');
+    var attendancePercentages = JSON.parse('{{ student_attendance_data | map(attribute="percentage") | list | tojson | safe }}');
+
+    var ctx = document.getElementById('attendanceChart').getContext('2d');
+    var attendanceChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: studentIDs,
+            datasets: [{
+                label: 'Attendance Percentage (%)',
+                data: attendancePercentages,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+</script>
+<br>
+
+<div class="text-center mt-3">
+    <a href="{{ url_for('export_csv') }}" class="btn btn-success">Export as CSV</a>
+    <a href="{{ url_for('export_pdf') }}" class="btn btn-danger">Export as PDF</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="admin-dashboard-container">
+    <div class="admin-card">
+        <h2>Admin Dashboard</h2>
+        <p>Manage users, attendance, and generate reports.</p>
+
+        <div class="admin-buttons">
+            <a href="{{ url_for('student_records') }}" class="btn-admin">📊 View Attendance</a>
+            <a href="{{ url_for('generate_reports') }}" class="btn-admin">📄 Generate Reports</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .admin-dashboard-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 90vh; /* Adjust height for better spacing */
+        margin-top: 60px; 
+    }
+
+    .admin-card {
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        color: white;
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+        width: 90%;
+        max-width: 450px;
+        backdrop-filter: blur(10px);
+    }
+
+    .admin-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .btn-admin {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+        background: white;
+        color: #0056b3;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 8px;
+        font-size: 18px;
+        transition: 0.3s ease;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-admin:hover {
+        background: #003f80;
+        color: white;
+        transform: translateY(-3px);
+    }
+</style>
+{% endblock %}

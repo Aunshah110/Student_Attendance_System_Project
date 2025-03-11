@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Home - Student Attendance{% endblock %}
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="display-4">Welcome to the Student Attendance System</h1>
+    <p class="lead">A simple and efficient way to manage student attendance for your class.</p>
+
+    <div class="mt-4">
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg mx-2">Login as Teacher</a>
+        <a href="{{ url_for('login') }}" class="btn btn-success btn-lg mx-2">Login as Student</a>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>Powered by <span class="author">KAZMI</span></p>
+</footer>
+
+<!-- Styling -->
+<style>
+    body {
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        color: white;
+    }
+    .container {
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .footer {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: left;
+        font-size: 25px;
+        font-weight: bold;
+        color: rgba(255, 255, 255, 0.8);
+        text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.3);
+    }
+    .author {
+        color: #ffcc00; /* Gold color for highlighting */
+        font-weight: bold;
+        text-shadow: 1px 1px 10px rgba(255, 204, 0, 0.614);
+    }
+</style>
+{% endblock %}
+
+
+
